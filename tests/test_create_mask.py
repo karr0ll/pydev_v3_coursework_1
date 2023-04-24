@@ -1,5 +1,6 @@
-from app.main import create_mask
+import os
 
+from app.main import create_mask
 
 def test_create_mask():
     assert create_mask('Visa Classic 2842878893689012') == 'Visa Classic 2842 87** **** 9012'

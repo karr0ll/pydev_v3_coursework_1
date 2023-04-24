@@ -53,7 +53,6 @@ def print_transactions():
                  f"{amount} {currency}\n"
         result.append(result_string)
     return result
-print(type(print_transactions()[0]))
 
 if __name__ == "__main__":
     data_to_print = print_transactions()
