@@ -9,7 +9,7 @@ def load_json_sorted():
     сортирует словари по убыванию даты, фильтрует транзакции по значению "EXECUTED"
     :return: отсортированный по убыванию даты список словарей с данными
     """
-    with open("operations.json", "r", encoding="UTF-8") as file:
+    with open("../operations.json", "r", encoding="UTF-8") as file:
         data = json.load(file)
         filtered_data = filter(None, data)
         sorted_data = sorted(filtered_data, key=operator.itemgetter('date'), reverse=True)

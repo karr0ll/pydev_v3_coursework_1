@@ -1,5 +1,6 @@
-from utils import load_json_sorted
 import datetime
+
+from app.utils import load_json_sorted
 
 
 def create_mask(string):
@@ -27,16 +28,17 @@ def print_transactions():
     Выводит последние 5 транзакций из файла json
     """
     data = load_json_sorted()[:5]
+    result = []
     for item in data:
         date = datetime.datetime.strptime(item["date"], '%Y-%m-%dT%H:%M:%S.%f').date()
         formatted_date = datetime.datetime.strftime(date, '%d.%m.%Y')
 
         description = item["description"]
+
         try:
             from_ = item["from"]
         except KeyError:
             from_ = ""
-
         masked_from_ = create_mask(from_)
 
         to_ = item["to"]
@@ -46,11 +48,14 @@ def print_transactions():
 
         currency = item["operationAmount"]["currency"]["name"]
 
-        result = f"{formatted_date} {description}\n" \
+        result_string = f"{formatted_date} {description}\n" \
                  f"{masked_from_} -> {masked_to}\n" \
-                 f"{amount} {currency}"
-        print(f"{result}\n")
-
+                 f"{amount} {currency}\n"
+        result.append(result_string)
+    return result
+print(type(print_transactions()[0]))
 
 if __name__ == "__main__":
-    print_transactions()
+    data_to_print = print_transactions()
+    for item in data_to_print:
+        print(item)
