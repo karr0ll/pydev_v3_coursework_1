@@ -1,4 +1,5 @@
-from main.utils import load_json_sorted
+from app.utils import load_json_sorted
+
 
 def test_load_json_sorted():
     assert load_json_sorted()[1] == {
